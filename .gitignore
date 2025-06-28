@@ -130,3 +130,17 @@ tensorboard_log
 ckpt
 
 .hopeignore
+
+logs
+log
+outputs
+verl_checkpoints/
+verl_step_records/
+tmp.*
+**/tmp.*
+/tmp
+/test*
+/*.json
+/*.txt
+corpus
+=12.0.0

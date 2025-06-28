@@ -1,8 +1,10 @@
 set -e -x
 
-export MODEL_PATH=/your/path/to/huggingface.co/Qwen/Qwen3-4B
+export WANDB_API_KEY="206bfb00f2ea3ace5584800c219dfc894e981bc3"
+
+export MODEL_PATH=/home/ubuntu/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/531c80e289d6cff3a7cd8c0db8110231d23a6f7a
 export REWARD_MODEL_PATH=/your/path/to/huggingface.co/Qwen/QwQ-32B
-export RESULT_DIR=/your/path/to/results/rl_factory/your_result_dir
+export RESULT_DIR=log
 
 python3 -m verl.trainer.main_ppo\
     algorithm.adv_estimator=grpo\
@@ -48,7 +50,7 @@ python3 -m verl.trainer.main_ppo\
     reward_model.reward_manager=parallel\
     algorithm.kl_ctrl.kl_coef=0.001\
     trainer.critic_warmup=0\
-    trainer.logger=['tensorboard']\
+    trainer.logger=['wandb']\
     trainer.project_name='GRPO_search'\
     trainer.experiment_name='search_with_thinking'\
     trainer.n_gpus_per_node=8\
